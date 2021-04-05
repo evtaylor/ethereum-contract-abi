@@ -1,8 +1,8 @@
 module EthereumContractABI
   module Types
-    class Uint
+    class Int
       def self.encode(int)
-        int.to_s(16)
+        "#{"0x" + ("%064x" % int).upcase.gsub(/\../, "FF")}"
       end
     end
   end
