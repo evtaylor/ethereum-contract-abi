@@ -6,15 +6,15 @@ require 'contract/types'
 include EthereumContractABI::ContractInterface
 
 describe EthereumContractABI::ContractInterface::Function do
-  describe "Function" do
-    it 'should encode a function call with arguments' do
+  describe "valid_args?" do
+    it 'should return false with wrong number of arguments' do
       name = "Test Function"
       inputs = [Input.new('tokenId', Types::UINT)]
       outputs = [Output.new('tokenId', Types::UINT)]
       func = Function.new(name, inputs, outputs)
 
-      argument = 12345
-      result = func.encode_call(argument)
+      result = func.valid_args?(12345, 67891)
+      expect(result).to(eq(false))
     end
   end
 end

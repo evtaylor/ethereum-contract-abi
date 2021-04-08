@@ -1,20 +1,16 @@
 module EthereumContractABI
   module ContractInterface
     class Function
+      attr_reader :name
+
       def initialize(name, inputs, outputs)
         @name = name
         @inputs = inputs
         @outputs = outputs
       end
 
-      def encode_call(*args)
-        self.validate_args(args)
-      end
-
-      private
-
-      def validate_args(args)
-
+      def valid_args?(*args)
+        return false unless args.size === @inputs.size
       end
     end
   end

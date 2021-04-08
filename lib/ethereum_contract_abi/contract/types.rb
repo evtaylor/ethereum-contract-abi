@@ -2,7 +2,7 @@ module EthereumContractABI
   module ContractInterface
     module Types
       UINT = "unit"
-      UINT = "string"
+      STRING = "string"
     end
   end
 end
