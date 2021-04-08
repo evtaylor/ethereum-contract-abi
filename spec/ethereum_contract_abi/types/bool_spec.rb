@@ -1,5 +1,5 @@
-require '../../../lib/ethereum_contract_abi/types/bool'
-require '../../../lib/ethereum_contract_abi/util'
+require 'types/bool'
+require 'util'
 
 describe EthereumContractABI::Types::Bool do
   describe "encode" do

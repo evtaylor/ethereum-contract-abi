@@ -1,5 +1,5 @@
-require '../../../lib/ethereum_contract_abi/types/int'
-require '../../../lib/ethereum_contract_abi/util'
+require 'types/int'
+require 'util'
 
 describe EthereumContractABI::Types::Int do
   describe "encode" do

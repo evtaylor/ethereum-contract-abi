@@ -6,6 +6,16 @@ module EthereumContractABI
         @inputs = inputs
         @outputs = outputs
       end
+
+      def encode_call(*args)
+        self.validate_args(args)
+      end
+
+      private
+
+      def validate_args(args)
+
+      end
     end
   end
 end

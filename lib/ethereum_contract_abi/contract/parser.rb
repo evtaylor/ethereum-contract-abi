@@ -1,4 +1,5 @@
 require 'json'
+require 'contract'
 
 module EthereumContractABI
   module ContractInterface

@@ -1,4 +1,5 @@
-require '../../../lib/ethereum_contract_abi/types/bytes'
+require 'types/bytes'
+require 'util'
 
 describe EthereumContractABI::Types::Bytes do
   describe "encode" do

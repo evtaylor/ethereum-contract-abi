@@ -1,5 +1,5 @@
-require '../../../lib/ethereum_contract_abi/types/decimal'
-require '../../../lib/ethereum_contract_abi/util'
+require 'types/decimal'
+require 'util'
 
 describe EthereumContractABI::Types::FixedPointDecimal do
   describe "encode" do
