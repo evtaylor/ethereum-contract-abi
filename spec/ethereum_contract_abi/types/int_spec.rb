@@ -27,5 +27,13 @@ describe EthereumContractABI::Types::Int do
       expect(result.bytesize).to eq(32)
     end
 
+    it "encodes basic integer" do
+      expected = "0000000000000000000000000000000000000000000000000000000000000064"
+      expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
+      result = EthereumContractABI::Types::Int.encode(100)
+      expect(result).to eq(expected_hex)
+      expect(result.bytesize).to eq(32)
+    end
+
   end
 end

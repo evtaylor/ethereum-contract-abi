@@ -9,8 +9,8 @@ describe EthereumContractABI::ContractInterface::Function do
   describe "valid_args?" do
     it 'should return false with wrong number of arguments' do
       name = "Test Function"
-      inputs = [Input.new('tokenId', Types::UINT)]
-      outputs = [Output.new('tokenId', Types::UINT)]
+      inputs = [Input.new('tokenId', Types::UINT8)]
+      outputs = [Output.new('tokenId', Types::UINT8)]
       func = Function.new(name, inputs, outputs)
 
       result = func.valid_args?(12345, 67891)
