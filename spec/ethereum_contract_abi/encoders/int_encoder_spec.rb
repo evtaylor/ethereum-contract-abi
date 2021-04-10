@@ -1,12 +1,12 @@
-require 'types/int'
+require 'encoders/int_encoder'
 require 'util'
 
-describe EthereumContractABI::Types::Int do
+describe EthereumContractABI::Encoders::IntEncoder do
   describe "encode" do
     it "encodes basic integer" do
       expected = "0000000000000000000000000000000000000000000000000000000000000045"
       expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
-      result = EthereumContractABI::Types::Int.encode(69)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(69)
       expect(result).to eq(expected_hex)
       expect(result.bytesize).to eq(32)
     end
@@ -14,7 +14,7 @@ describe EthereumContractABI::Types::Int do
     it "encodes negative integer" do
       expected = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
       expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
-      result = EthereumContractABI::Types::Int.encode(-1)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(-1)
       expect(result).to eq(expected_hex)
       expect(result.bytesize).to eq(32)
     end
@@ -22,7 +22,7 @@ describe EthereumContractABI::Types::Int do
     it "encodes negative 2 digit integer" do
       expected = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9B"
       expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
-      result = EthereumContractABI::Types::Int.encode(-101)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(-101)
       expect(result).to eq(expected_hex)
       expect(result.bytesize).to eq(32)
     end
@@ -30,10 +30,9 @@ describe EthereumContractABI::Types::Int do
     it "encodes basic integer" do
       expected = "0000000000000000000000000000000000000000000000000000000000000064"
       expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
-      result = EthereumContractABI::Types::Int.encode(100)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(100)
       expect(result).to eq(expected_hex)
       expect(result.bytesize).to eq(32)
     end
-
   end
 end

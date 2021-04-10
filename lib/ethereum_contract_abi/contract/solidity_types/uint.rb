@@ -1,3 +1,7 @@
+require 'encoders/int_encoder'
+
+include EthereumContractABI::Encoders
+
 module EthereumContractABI
   module ContractInterface
     module SolidityTypes

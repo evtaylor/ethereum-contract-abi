@@ -16,7 +16,7 @@ describe EthereumContractABI::ContractInterface::Function do
       outputs = [Output.new('tokenId', Uint.new(8))]
       func = Function.new(name, inputs, outputs)
 
-      result = func.valid_args?(12345, 67891)
+      result = func.valid_args?([12345, 67891])
       expect(result).to(eq(false))
     end
   end
@@ -53,8 +53,7 @@ describe EthereumContractABI::ContractInterface::Function do
       outputs = [Output.new(Bool.new)]
       func = Function.new(name, inputs, outputs)
 
-      result = func.encode_call(255, true)
-
+      result = func.encode_call(69, true)
       expected = "cdcd77c000000000000000000000000000000000000000000000000000000000000000450000000000000000000000000000000000000000000000000000000000000001"
       expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
       expect(result).to(eq(expected_hex))

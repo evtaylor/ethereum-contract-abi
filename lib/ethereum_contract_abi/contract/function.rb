@@ -23,12 +23,17 @@ module EthereumContractABI
         hash.slice(0..3)
       end
 
-      def valid_args?(*args)
+      def valid_args?(args)
         return false unless args.size === @inputs.size
+        true
       end
 
       def encode_call(*args)
-        method_id
+        raise ArgumentError.new("Invalid function arguments") unless valid_args?(args)
+        encoded_args = @inputs.zip(args).map do |input, arg|
+          input.encode_value(arg)
+        end
+        method_id + encoded_args.join('')
       end
     end
   end
