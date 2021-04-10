@@ -7,6 +7,10 @@ module EthereumContractABI
           @bits = bits
         end
 
+        def to_s
+          "uint#{@bits}"
+        end
+
         def valid_value?(number)
           return false unless number.is_a? Numeric
           return false unless number.bit_length <= @bits

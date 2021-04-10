@@ -1,6 +1,8 @@
 module EthereumContractABI
   module ContractInterface
     class Input
+      attr_reader :type
+
       def initialize(name, type)
         @name = name
         @type = type

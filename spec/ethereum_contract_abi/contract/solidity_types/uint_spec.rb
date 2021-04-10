@@ -11,6 +11,12 @@ describe EthereumContractABI::ContractInterface::SolidityTypes::Uint do
     end
   end
 
+  describe "to_s" do
+    it "should format type as string" do
+      expect(Uint.new(8).to_s).to eq("uint8")
+    end
+  end
+
   describe "encode_value" do
     it "should encode valid int" do
       allow(IntEncoder).to receive(:encode).and_return("encoded data")

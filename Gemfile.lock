@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/evtaylor/sha3-pure-ruby.git
+  revision: c3e764863f4926db33308d42e0fe7ec8ce3b72ce
+  specs:
+    sha3-pure-ruby (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,6 +29,7 @@ PLATFORMS
 DEPENDENCIES
   json (~> 2.5)
   rspec (~> 3.10)
+  sha3-pure-ruby!
 
 BUNDLED WITH
    2.2.3
