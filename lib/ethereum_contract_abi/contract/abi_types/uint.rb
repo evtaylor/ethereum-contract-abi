@@ -4,7 +4,7 @@ include EthereumContractABI::Encoders
 
 module EthereumContractABI
   module ContractInterface
-    module SolidityTypes
+    module AbiTypes
       class Uint
         def initialize(bits = 256)
           raise ArgumentError.new("8 must be a factor of bits") unless bits % 8 === 0
@@ -24,6 +24,12 @@ module EthereumContractABI
         def encode_value(number)
           raise ArgumentError unless valid_value?(number)
           IntEncoder.encode(number)
+        end
+
+        def self.from_string(string_type)
+          /(?<is_uint>uint)(?<bits>\d+)?/ =~ string_type
+          return nil unless is_uint
+          bits ? self.new(bits.to_i) : self.new
         end
       end
     end

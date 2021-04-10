@@ -1,6 +1,6 @@
 module EthereumContractABI
   module ContractInterface
-    module SolidityTypes
+    module AbiTypes
       class Bool
         def to_s
           "bool"

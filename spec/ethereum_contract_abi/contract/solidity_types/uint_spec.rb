@@ -1,10 +1,10 @@
-require 'contract/solidity_types/uint'
+require 'contract/abi_types/uint'
 require 'encoders/int_encoder'
 
 include EthereumContractABI::Encoders
-include EthereumContractABI::ContractInterface::SolidityTypes
+include EthereumContractABI::ContractInterface::AbiTypes
 
-describe EthereumContractABI::ContractInterface::SolidityTypes::Uint do
+describe EthereumContractABI::ContractInterface::AbiTypes::Uint do
   describe "initialize" do
     it "should raise error when invalid number of bits provided" do
       expect{Uint.new(7)}.to raise_error(ArgumentError)
@@ -33,6 +33,26 @@ describe EthereumContractABI::ContractInterface::SolidityTypes::Uint do
     it "should raise error encoding invalid value" do
       uint = Uint.new(8)
       expect{uint.encode_value(256)}.to raise_error(ArgumentError)
+    end
+  end
+
+  describe "from_string" do
+    it "should return false when not valid uint string" do
+      expect(Uint.from_string("bool")).to eq(nil)
+      expect(Uint.from_string("int")).to eq(nil)
+      expect(Uint.from_string("int256")).to eq(nil)
+      expect(Uint.from_string("bytes")).to eq(nil)
+    end
+
+    it "should new instance for valid type string " do
+      type = Uint.from_string("uint128")
+      expect(type).to_not eq(nil)
+      expect(type.to_s).to eq("uint128")
+    end
+
+    it "should default to uint256 if uint" do
+      type = Uint.from_string("uint")
+      expect(type.to_s).to eq("uint256")
     end
   end
 end

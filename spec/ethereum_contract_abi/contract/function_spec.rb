@@ -6,7 +6,7 @@ require 'contract/solidity_types/bool'
 require 'util'
 
 include EthereumContractABI::ContractInterface
-include EthereumContractABI::ContractInterface::SolidityTypes
+include EthereumContractABI::ContractInterface::AbiTypes
 
 describe EthereumContractABI::ContractInterface::Function do
   describe "valid_args?" do
