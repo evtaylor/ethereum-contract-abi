@@ -5,6 +5,7 @@ require 'contract/abi_types/bool'
 require 'contract/abi_types/string'
 require 'contract/abi_types/fixed'
 require 'contract/abi_types/bytes'
+require 'contract/abi_types/address'
 
 include EthereumContractABI::ContractInterface::AbiTypes
 
@@ -27,6 +28,9 @@ module EthereumContractABI
 
           bytes = Bytes.from_string(string_type)
           return bytes unless bytes.nil?
+
+          address = Address.from_string(string_type)
+          return address unless address.nil?
 
           raise ArgumentError.new('Unknown type')
         end
