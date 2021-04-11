@@ -1,5 +1,5 @@
 require 'contract/input'
-require 'contract/solidity_types/uint'
+require 'contract/abi_types/uint'
 require 'encoders/int_encoder'
 
 include EthereumContractABI::Encoders

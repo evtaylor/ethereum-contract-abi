@@ -1,8 +1,8 @@
 require 'contract/function'
 require 'contract/input'
 require 'contract/output'
-require 'contract/solidity_types/uint'
-require 'contract/solidity_types/bool'
+require 'contract/abi_types/uint'
+require 'contract/abi_types/bool'
 require 'util'
 
 include EthereumContractABI::ContractInterface

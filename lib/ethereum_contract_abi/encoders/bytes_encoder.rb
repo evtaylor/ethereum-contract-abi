@@ -4,7 +4,8 @@ module EthereumContractABI
   module Encoders
     class BytesEncoder
       def self.encode(bytes)
-        bytes + Constants::BYTE_ZERO * (32 - bytes.bytesize)
+        final_length = (bytes.bytesize / 32.to_f).ceil * 32
+        bytes + Constants::BYTE_ZERO * (final_length - bytes.bytesize)
       end
     end
   end
