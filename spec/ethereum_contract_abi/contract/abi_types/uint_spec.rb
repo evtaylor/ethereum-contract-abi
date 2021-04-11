@@ -30,6 +30,11 @@ describe EthereumContractABI::ContractInterface::AbiTypes::Uint do
       expect{uint.encode_value('abc')}.to raise_error(ArgumentError)
     end
 
+    it "should raise error encoding a negative number" do
+      uint = Uint.new(8)
+      expect{uint.encode_value(-1)}.to raise_error(ArgumentError)
+    end
+
     it "should raise error encoding invalid value" do
       uint = Uint.new(8)
       expect{uint.encode_value(256)}.to raise_error(ArgumentError)
