@@ -1,6 +1,8 @@
 require 'json'
 require 'contract'
 require 'contract/abi_types/uint'
+require 'contract/abi_types/bool'
+require 'contract/abi_types/string'
 
 include EthereumContractABI::ContractInterface::AbiTypes
 
@@ -9,8 +11,14 @@ module EthereumContractABI
     module Parsers
       class AbiTypeParser
         def self.from_string(string_type)
-          is_uint = Uint.from_string(string_type)
-          return is_uint unless is_uint.nil?
+          uint = Uint.from_string(string_type)
+          return uint unless uint.nil?
+
+          bool = Bool.from_string(string_type)
+          return bool unless bool.nil?
+
+          str = EthereumContractABI::ContractInterface::AbiTypes::String.from_string(string_type)
+          return str unless str.nil?
 
           raise ArgumentError.new('Unknown type')
         end

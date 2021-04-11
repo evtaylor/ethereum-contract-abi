@@ -2,9 +2,10 @@ require 'contract/parsers/function_parser'
 require 'contract/function'
 
 include EthereumContractABI::ContractInterface
+include EthereumContractABI::ContractInterface::Parsers
 
-describe EthereumContractABI::ContractInterface::FunctionParser do
-  describe "from json" do
+describe EthereumContractABI::ContractInterface::Parsers::FunctionParser do
+  describe "from_hash" do
     it 'should parse from hash' do
       function_hash = {
         "inputs":[
@@ -25,7 +26,7 @@ describe EthereumContractABI::ContractInterface::FunctionParser do
         "stateMutability":"view",
         "type":"function"
       }
-      func = EthereumContractABI::ContractInterface::FunctionParser.from_hash(function_hash)
+      func = FunctionParser.from_hash(function_hash)
       expect(func).is_a? Function
     end
   end

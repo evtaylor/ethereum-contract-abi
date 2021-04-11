@@ -14,6 +14,10 @@ module EthereumContractABI
           raise ArgumentError unless valid_value?(bool)
           IntEncoder.encode(bool ? 1 : 0)
         end
+
+        def self.from_string(string_type)
+          string_type === 'bool' ? self.new : nil
+        end
       end
     end
   end
