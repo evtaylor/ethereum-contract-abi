@@ -6,10 +6,10 @@ module EthereumContractABI
   module ContractInterface
     module AbiTypes
       class Fixed
-        def initialize(bits, precision)
+        def initialize(bits = 128, precision = 18)
           raise ArgumentError.new("8 must be a factor of bits") unless bits % 8 === 0
-          raise ArgumentError.new("bits must be: 8 <= bits <= 256") unless 8 <= bits <= 256
-          raise ArgumentError.new("precision must be: 0 < precision <= 80") unless 0 < precision <= 80
+          raise ArgumentError.new("bits must be: 8 <= bits <= 256") unless 8 <= bits && bits <= 256
+          raise ArgumentError.new("precision must be: 0 < precision <= 80") unless 0 < precision && precision <= 80
           @bits = bits
           @precision = precision
         end
@@ -20,7 +20,7 @@ module EthereumContractABI
 
         def valid_value?(number)
           return false unless number.is_a? Numeric
-          return false unless number.bit_length <= @bits
+          return false unless number.round(0).bit_length <= @bits
           true
         end
 
@@ -30,9 +30,10 @@ module EthereumContractABI
         end
 
         def self.from_string(string_type)
-          /(?<is_fixed>int)(?<bits>\d+)?/ =~ string_type
-          return nil unless is_int
-          bits ? self.new(bits.to_i) : self.new
+          /(?<type>fixed)|(?<bits>\d+)x(?<precision>\d+)?/ =~ string_type
+          return nil unless type
+
+          bits && precision ? self.new(bits.to_i, precision.to_i) : self.new
         end
       end
     end
