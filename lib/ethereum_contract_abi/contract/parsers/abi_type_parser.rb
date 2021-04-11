@@ -3,6 +3,8 @@ require 'contract'
 require 'contract/abi_types/uint'
 require 'contract/abi_types/bool'
 require 'contract/abi_types/string'
+require 'contract/abi_types/fixed'
+require 'contract/abi_types/bytes'
 
 include EthereumContractABI::ContractInterface::AbiTypes
 
@@ -17,8 +19,14 @@ module EthereumContractABI
           bool = Bool.from_string(string_type)
           return bool unless bool.nil?
 
+          decimal = Fixed.from_string(string_type)
+          return decimal unless decimal.nil?
+
           str = EthereumContractABI::ContractInterface::AbiTypes::String.from_string(string_type)
           return str unless str.nil?
+
+          bytes = Bytes.from_string(string_type)
+          return bytes unless bytes.nil?
 
           raise ArgumentError.new('Unknown type')
         end

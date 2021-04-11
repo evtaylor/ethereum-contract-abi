@@ -30,7 +30,7 @@ module EthereumContractABI
         end
 
         def self.from_string(string_type)
-          /(?<type>fixed)|(?<bits>\d+)x(?<precision>\d+)?/ =~ string_type
+          /(?<type>fixed)((?<bits>\d+)x(?<precision>\d+))?/ =~ string_type
           return nil unless type
 
           bits && precision ? self.new(bits.to_i, precision.to_i) : self.new
