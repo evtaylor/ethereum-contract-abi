@@ -5,7 +5,7 @@ describe EthereumContractABI::ContractInterface::AbiTypes::Bool do
   describe "encode" do
     it "encodes boolean true" do
       expected = "0000000000000000000000000000000000000000000000000000000000000001"
-      expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       bool = EthereumContractABI::ContractInterface::AbiTypes::Bool.new
       result = bool.encode_value(true)
       expect(result).to eq(expected_hex)
@@ -14,7 +14,7 @@ describe EthereumContractABI::ContractInterface::AbiTypes::Bool do
 
     it "encodes boolean false" do
       expected = "0000000000000000000000000000000000000000000000000000000000000000"
-      expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       bool = EthereumContractABI::ContractInterface::AbiTypes::Bool.new
       result = bool.encode_value(false)
       expect(result).to eq(expected_hex)

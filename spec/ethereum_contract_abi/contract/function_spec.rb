@@ -3,8 +3,10 @@ require 'contract/input'
 require 'contract/output'
 require 'contract/abi_types/uint'
 require 'contract/abi_types/bool'
+require 'contract/abi_types/string'
 require 'util'
 
+include EthereumContractABI
 include EthereumContractABI::ContractInterface
 include EthereumContractABI::ContractInterface::AbiTypes
 
@@ -41,7 +43,7 @@ describe EthereumContractABI::ContractInterface::Function do
       func = Function.new(name, inputs, outputs)
 
       expected = "cdcd77c0"
-      expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       expect(func.method_id).to(eq(expected_hex))
     end
   end
@@ -55,7 +57,20 @@ describe EthereumContractABI::ContractInterface::Function do
 
       result = func.encode_call(69, true)
       expected = "cdcd77c000000000000000000000000000000000000000000000000000000000000000450000000000000000000000000000000000000000000000000000000000000001"
-      expected_hex = EthereumContractABI::Util.strToEscapedHex(expected)
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      expect(result).to(eq(expected_hex))
+    end
+
+    it 'encode function call with single argument' do
+      name = "tokenURI"
+      inputs = [Input.new('_tokenId', Uint.new(256))]
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      func = Function.new(name, inputs, outputs)
+
+      result = func.encode_call(1000036541)
+      p Util.fromHexByteString(result)
+      expected = "c87b56dd000000000000000000000000000000000000000000000000000000003b9b58bd"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       expect(result).to(eq(expected_hex))
     end
   end

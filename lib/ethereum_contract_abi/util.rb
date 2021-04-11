@@ -1,7 +1,12 @@
 module EthereumContractABI
   class Util
-    def self.strToEscapedHex(str)
+
+    def self.toHexByteString(str)
       [str].pack("H*")
+    end
+
+    def self.fromHexByteString(str)
+      str.unpack("H*").first
     end
     
     def self. keccak_hash(str)
