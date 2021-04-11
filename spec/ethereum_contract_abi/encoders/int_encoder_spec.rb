@@ -42,5 +42,13 @@ describe EthereumContractABI::Encoders::IntEncoder do
       expect(result).to eq(expected_hex)
       expect(result.bytesize).to eq(32)
     end
+
+    it "encodes very large integer" do
+      expected = "000000000000000000000000Ae0EF4e561c31D5FBb62b8910B58Ae316cD22438"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(993697938008505089588736563107658604389239759928)
+      expect(result.bytesize).to eq(32)
+      expect(result).to eq(expected_hex)
+    end
   end
 end
