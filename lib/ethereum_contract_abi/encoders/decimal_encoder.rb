@@ -7,7 +7,7 @@ module EthereumContractABI
   module Encoders
     class DecimalEncoder
       def self.encode_value(decimal_number, precision)
-        IntEncoder.encode(decimal_number * 10**precision)
+        IntEncoder.encode((decimal_number * 10**precision).to_i)
       end
     end
   end

@@ -30,11 +30,6 @@ describe EthereumContractABI::Encoders::BytesEncoder do
 
     it "encodes long string with special characters" do
       expected = "000000000000000000000000000000000000000000000000000000000000002c68747470733a2f2f6d6574612e706f6c6b616d6f6e2e636f6d2f6d6574613f69643d313030303033363534310000000000000000000000000000000000000000"
-      p expected.length
-      p expected.slice(0..63)
-      p expected.slice(64..127)
-      p expected.slice(128..191)
-      p expected.slice(192..253)
       expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       str = "https://meta.polkamon.com/meta?id=1000036541"
       result = EthereumContractABI::Encoders::BytesEncoder.encode(str)
