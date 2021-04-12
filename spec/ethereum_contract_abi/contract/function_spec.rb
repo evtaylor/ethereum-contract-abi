@@ -4,6 +4,7 @@ require 'contract/output'
 require 'contract/abi_types/uint'
 require 'contract/abi_types/bool'
 require 'contract/abi_types/string'
+require 'contract/abi_types/address'
 require 'util'
 
 include EthereumContractABI
@@ -68,8 +69,31 @@ describe EthereumContractABI::ContractInterface::Function do
       func = Function.new(name, inputs, outputs)
 
       result = func.encode_call(1000036541)
-      p Util.fromHexByteString(result)
       expected = "c87b56dd000000000000000000000000000000000000000000000000000000003b9b58bd"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      expect(result).to(eq(expected_hex))
+    end
+
+    it 'encode function call with no arguments' do
+      name = "symbol"
+      inputs = []
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      func = Function.new(name, inputs, outputs)
+
+      result = func.encode_call
+      expected = "95d89b41"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      expect(result).to(eq(expected_hex))
+    end
+
+    it 'encode function call with one address input' do
+      name = "balanceOf"
+      inputs = [Input.new('owner', Address.new)]
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      func = Function.new(name, inputs, outputs)
+
+      result = func.encode_call(993697938008505089588736563107658604389239759928)
+      expected = "70a08231000000000000000000000000Ae0EF4e561c31D5FBb62b8910B58Ae316cD22438"
       expected_hex = EthereumContractABI::Util.toHexByteString(expected)
       expect(result).to(eq(expected_hex))
     end

@@ -3,6 +3,22 @@ require 'util'
 
 describe EthereumContractABI::Encoders::IntEncoder do
   describe "encode" do
+    it "encodes 1" do
+      expected = "0000000000000000000000000000000000000000000000000000000000000001"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(1)
+      expect(result).to eq(expected_hex)
+      expect(result.bytesize).to eq(32)
+    end
+
+    it "encodes 0" do
+      expected = "0000000000000000000000000000000000000000000000000000000000000000"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(0)
+      expect(result).to eq(expected_hex)
+      expect(result.bytesize).to eq(32)
+    end
+
     it "encodes basic integer" do
       expected = "0000000000000000000000000000000000000000000000000000000000000045"
       expected_hex = EthereumContractABI::Util.toHexByteString(expected)

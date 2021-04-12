@@ -8,13 +8,16 @@ module EthereumContractABI
   module ContractInterface
     module AbiTypes
       class Address < Uint
+        def initialize
+          super(160)
+        end
 
         def to_s
           "address"
         end
 
         def self.from_string(string_type)
-          string_type === 'address' ? Uint.new(160) : nil
+          string_type === 'address' ? self.new : nil
         end
       end
     end
