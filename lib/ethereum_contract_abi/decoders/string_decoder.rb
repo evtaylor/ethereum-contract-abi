@@ -8,8 +8,8 @@ module EthereumContractABI
     class StringDecoder
       def self.decode(string, num_bytes = nil)
         hex = [string].pack('H*')
-        length = IntDecoder.decode(hex.byteslice(0..31).unpack("H*").first)
-        hex.byteslice(32..hex.bytesize).byteslice(0..(length-1))
+        length = IntDecoder.decode(hex.byteslice(0, 32).unpack("H*").first)
+        hex.byteslice(32..hex.bytesize).byteslice(0, length)
       end
     end
   end

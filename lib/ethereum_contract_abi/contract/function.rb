@@ -1,6 +1,10 @@
 require 'digest'
 require 'openssl'
 require 'sha3-pure-ruby'
+require 'util'
+require 'decoders/function_decoder'
+
+include EthereumContractABI::Decoders
 
 module EthereumContractABI
   module ContractInterface
@@ -11,15 +15,16 @@ module EthereumContractABI
         @name = name
         @inputs = inputs
         @outputs = outputs
+        @decoder = FunctionDecoder.new(outputs)
       end
 
       def signature
-        params = @inputs.map{|i| i.type.to_s}
+        params = @inputs.map { |i| i.type.to_s }
         "#{@name}(#{params.join(",")})"
       end
 
       def method_id
-        hash = [Digest::SHA3.new(256, true ).hexdigest(signature)].pack("H*")
+        hash = [Digest::SHA3.new(256, true).hexdigest(signature)].pack("H*")
         hash.slice(0..3)
       end
 
@@ -34,6 +39,20 @@ module EthereumContractABI
           input.encode_value(arg)
         end
         method_id + encoded_args.join('')
+      end
+
+      def decode_output(output_string)
+        if has_any_dynamic_outputs
+          @decoder.decode_dynamic_output(output_string)
+        else
+          @decoder.decode_static_output(output_string)
+        end
+      end
+
+      private
+
+      def has_any_dynamic_outputs
+        @outputs.find { |o| o.type.is_dynamic }
       end
     end
   end

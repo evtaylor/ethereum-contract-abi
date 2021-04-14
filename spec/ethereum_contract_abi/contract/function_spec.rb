@@ -98,4 +98,18 @@ describe EthereumContractABI::ContractInterface::Function do
       expect(result).to(eq(expected_hex))
     end
   end
+
+  describe "decode_output" do
+    it "decodes the string output of a simple function" do
+      name = "symbol"
+      inputs = []
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      func = Function.new(name, inputs, outputs)
+
+      function_output = "00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005504d4f4e43000000000000000000000000000000000000000000000000000000"
+      result = func.decode_output(function_output)
+      expected = ["PMONC"]
+      expect(result).to(eq(expected))
+    end
+  end
 end
