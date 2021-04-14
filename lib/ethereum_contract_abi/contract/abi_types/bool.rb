@@ -1,13 +1,18 @@
 require 'encoders/int_encoder'
+require 'contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 
 module EthereumContractABI
   module ContractInterface
     module AbiTypes
-      class Bool
+      class Bool < BaseType
         def to_s
           "bool"
+        end
+
+        def is_dynamic
+          false
         end
 
         def valid_value?(bool)

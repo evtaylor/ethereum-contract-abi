@@ -12,6 +12,10 @@ module EthereumContractABI
           super(160)
         end
 
+        def is_dynamic
+          false
+        end
+
         def to_s
           "address"
         end

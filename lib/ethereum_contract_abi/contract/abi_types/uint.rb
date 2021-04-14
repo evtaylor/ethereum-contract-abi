@@ -11,6 +11,10 @@ module EthereumContractABI
           "uint#{@bits}"
         end
 
+        def is_dynamic
+          false
+        end
+
         def valid_value?(number)
           super(number) && number >= 0
         end

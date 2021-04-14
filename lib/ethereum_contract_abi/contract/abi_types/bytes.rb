@@ -1,13 +1,22 @@
 require 'encoders/bytes_encoder'
+require 'contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 
 module EthereumContractABI
   module ContractInterface
     module AbiTypes
-      class Bytes
+      class Bytes < BaseType
         def initialize(bytes = nil)
           @bytes = bytes
+        end
+
+        def is_dynamic
+          @bytes.nil?
+        end
+
+        def bytesize
+          @bytes.nil? ? nil : (@bytes.to_f/32.0).ceil
         end
 
         def to_s

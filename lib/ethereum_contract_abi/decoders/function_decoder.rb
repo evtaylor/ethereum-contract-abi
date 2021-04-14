@@ -20,7 +20,10 @@ module EthereumContractABI
       end
 
       def decode_static_output(encoded_output)
-
+        @function_outputs.map.with_index  do |output, index|
+          bytes = encoded_output.slice!(0, output.type.bytesize * 2)
+          output.type.decode_value(bytes)
+        end
       end
 
       private

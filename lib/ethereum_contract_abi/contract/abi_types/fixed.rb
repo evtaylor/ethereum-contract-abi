@@ -1,17 +1,22 @@
 require 'encoders/decimal_encoder'
+require 'contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 
 module EthereumContractABI
   module ContractInterface
     module AbiTypes
-      class Fixed
+      class Fixed < BaseType
         def initialize(bits = 128, precision = 18)
           raise ArgumentError.new("8 must be a factor of bits") unless bits % 8 === 0
           raise ArgumentError.new("bits must be: 8 <= bits <= 256") unless 8 <= bits && bits <= 256
           raise ArgumentError.new("precision must be: 0 < precision <= 80") unless 0 < precision && precision <= 80
           @bits = bits
           @precision = precision
+        end
+
+        def is_dynamic
+          false
         end
 
         def to_s

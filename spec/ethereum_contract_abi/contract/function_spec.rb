@@ -100,7 +100,7 @@ describe EthereumContractABI::ContractInterface::Function do
   end
 
   describe "decode_output" do
-    it "decodes the string output of a simple function" do
+    it "decodes the dynamic function output of a simple function" do
       name = "symbol"
       inputs = []
       outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
@@ -109,6 +109,33 @@ describe EthereumContractABI::ContractInterface::Function do
       function_output = "00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005504d4f4e43000000000000000000000000000000000000000000000000000000"
       result = func.decode_output(function_output)
       expected = ["PMONC"]
+      expect(result).to(eq(expected))
+    end
+
+    it "decodes static output of a function" do
+      name = "symbol"
+      inputs = []
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::Uint.new)]
+      func = Function.new(name, inputs, outputs)
+
+      function_output = "0000000000000000000000000000000000000000000000000000000000000004"
+      result = func.decode_output(function_output)
+      expected = [4]
+      expect(result).to(eq(expected))
+    end
+
+    it "decodes static output of a function with multiple outputs" do
+      name = "symbol"
+      inputs = []
+      outputs = [
+        Output.new(EthereumContractABI::ContractInterface::AbiTypes::Uint.new),
+        Output.new(EthereumContractABI::ContractInterface::AbiTypes::Uint.new),
+      ]
+      func = Function.new(name, inputs, outputs)
+
+      function_output = "00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000005"
+      result = func.decode_output(function_output)
+      expected = [4, 5]
       expect(result).to(eq(expected))
     end
   end

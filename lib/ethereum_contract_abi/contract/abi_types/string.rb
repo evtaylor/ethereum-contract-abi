@@ -1,5 +1,6 @@
 require 'encoders/bytes_encoder'
 require 'decoders/string_decoder'
+require 'contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 include EthereumContractABI::Decoders
@@ -7,13 +8,17 @@ include EthereumContractABI::Decoders
 module EthereumContractABI
   module ContractInterface
     module AbiTypes
-      class String
+      class String < BaseType
         def to_s
           "string"
         end
 
         def is_dynamic
           true
+        end
+
+        def bytesize
+          nil
         end
 
         def valid_value?(value)
