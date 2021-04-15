@@ -1,5 +1,5 @@
-require 'contract/parsers/function_parser'
-require 'contract/function'
+require 'ethereum-contract-abi/contract/parsers/function_parser'
+require 'ethereum-contract-abi/contract/function'
 
 include EthereumContractABI::ContractInterface
 include EthereumContractABI::ContractInterface::Parsers

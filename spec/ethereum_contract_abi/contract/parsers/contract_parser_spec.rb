@@ -1,4 +1,4 @@
-require 'contract/parsers/contract_parser'
+require 'ethereum-contract-abi/contract/parsers/contract_parser'
 
 include EthereumContractABI::ContractInterface::Parsers
 

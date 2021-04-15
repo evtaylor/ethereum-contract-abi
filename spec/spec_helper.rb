@@ -1,5 +1,5 @@
 require 'bundler/setup'
-lib = File.expand_path("../../lib/ethereum_contract_abi", __FILE__)
+lib = File.expand_path("../../lib", __FILE__)
 $LOAD_PATH.unshift(lib)
 
 FIXTURES = File.expand_path("../fixtures/", __FILE__)

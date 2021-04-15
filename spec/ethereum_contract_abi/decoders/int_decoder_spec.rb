@@ -1,5 +1,5 @@
-require 'util'
-require 'decoders/int_decoder'
+require 'ethereum-contract-abi/util'
+require 'ethereum-contract-abi/decoders/int_decoder'
 
 describe EthereumContractABI::Decoders::IntDecoder do
   describe "decode" do

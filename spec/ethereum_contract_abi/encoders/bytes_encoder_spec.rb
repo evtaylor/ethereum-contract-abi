@@ -1,5 +1,5 @@
-require 'encoders/bytes_encoder'
-require 'util'
+require 'ethereum-contract-abi/encoders/bytes_encoder'
+require 'ethereum-contract-abi/util'
 
 describe EthereumContractABI::Encoders::BytesEncoder do
   describe "encode" do

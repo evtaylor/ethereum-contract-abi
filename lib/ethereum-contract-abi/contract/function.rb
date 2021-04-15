@@ -1,8 +1,8 @@
 require 'digest'
 require 'openssl'
 require 'sha3-pure-ruby'
-require 'util'
-require 'decoders/function_decoder'
+require 'ethereum-contract-abi/util'
+require 'ethereum-contract-abi/decoders/function_decoder'
 
 include EthereumContractABI::Decoders
 

@@ -1,5 +1,5 @@
-require 'encoders/int_encoder'
-require 'util'
+require 'ethereum-contract-abi/encoders/int_encoder'
+require 'ethereum-contract-abi/util'
 
 describe EthereumContractABI::Encoders::IntEncoder do
   describe "encode" do

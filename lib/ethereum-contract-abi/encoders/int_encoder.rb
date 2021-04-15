@@ -1,4 +1,4 @@
-require_relative '../constants'
+require 'ethereum-contract-abi/constants'
 
 module EthereumContractABI
   module Encoders

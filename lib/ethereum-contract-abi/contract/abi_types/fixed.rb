@@ -1,5 +1,5 @@
-require 'encoders/decimal_encoder'
-require 'contract/abi_types/base_type'
+require 'ethereum-contract-abi/encoders/decimal_encoder'
+require 'ethereum-contract-abi/contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 

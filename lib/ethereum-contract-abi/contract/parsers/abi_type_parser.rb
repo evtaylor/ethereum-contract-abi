@@ -1,11 +1,11 @@
 require 'json'
-require 'contract'
-require 'contract/abi_types/uint'
-require 'contract/abi_types/bool'
-require 'contract/abi_types/string'
-require 'contract/abi_types/fixed'
-require 'contract/abi_types/bytes'
-require 'contract/abi_types/address'
+require 'ethereum-contract-abi/contract'
+require 'ethereum-contract-abi/contract/abi_types/uint'
+require 'ethereum-contract-abi/contract/abi_types/bool'
+require 'ethereum-contract-abi/contract/abi_types/string'
+require 'ethereum-contract-abi/contract/abi_types/fixed'
+require 'ethereum-contract-abi/contract/abi_types/bytes'
+require 'ethereum-contract-abi/contract/abi_types/address'
 
 include EthereumContractABI::ContractInterface::AbiTypes
 

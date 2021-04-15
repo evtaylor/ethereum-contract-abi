@@ -1,5 +1,5 @@
-require_relative '../constants'
-require 'encoders/int_encoder'
+require 'ethereum-contract-abi/constants'
+require 'ethereum-contract-abi/encoders/int_encoder'
 
 include EthereumContractABI::Encoders
 

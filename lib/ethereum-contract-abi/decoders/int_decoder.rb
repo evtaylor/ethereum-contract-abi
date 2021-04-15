@@ -1,4 +1,4 @@
-require 'util'
+require 'ethereum-contract-abi/util'
 
 module EthereumContractABI
   module Decoders

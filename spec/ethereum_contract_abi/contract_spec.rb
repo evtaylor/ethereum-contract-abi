@@ -1,5 +1,5 @@
-require 'contract/function'
-require 'contract'
+require 'ethereum-contract-abi/contract/function'
+require 'ethereum-contract-abi/contract'
 
 include EthereumContractABI::ContractInterface
 

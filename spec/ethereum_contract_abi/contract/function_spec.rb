@@ -1,11 +1,11 @@
-require 'contract/function'
-require 'contract/input'
-require 'contract/output'
-require 'contract/abi_types/uint'
-require 'contract/abi_types/bool'
-require 'contract/abi_types/string'
-require 'contract/abi_types/address'
-require 'util'
+require 'ethereum-contract-abi/contract/function'
+require 'ethereum-contract-abi/contract/input'
+require 'ethereum-contract-abi/contract/output'
+require 'ethereum-contract-abi/contract/abi_types/uint'
+require 'ethereum-contract-abi/contract/abi_types/bool'
+require 'ethereum-contract-abi/contract/abi_types/string'
+require 'ethereum-contract-abi/contract/abi_types/address'
+require 'ethereum-contract-abi/util'
 
 include EthereumContractABI
 include EthereumContractABI::ContractInterface

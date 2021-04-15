@@ -1,6 +1,6 @@
-require 'encoders/bytes_encoder'
-require 'decoders/string_decoder'
-require 'contract/abi_types/base_type'
+require 'ethereum-contract-abi/encoders/bytes_encoder'
+require 'ethereum-contract-abi/decoders/string_decoder'
+require 'ethereum-contract-abi/contract/abi_types/base_type'
 
 include EthereumContractABI::Encoders
 include EthereumContractABI::Decoders

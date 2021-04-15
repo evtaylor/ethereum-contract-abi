@@ -1,6 +1,6 @@
-require 'util'
-require 'decoders/int_decoder'
-require 'decoders/string_decoder'
+require 'ethereum-contract-abi/util'
+require 'ethereum-contract-abi/decoders/int_decoder'
+require 'ethereum-contract-abi/decoders/string_decoder'
 
 module EthereumContractABI
   module Decoders

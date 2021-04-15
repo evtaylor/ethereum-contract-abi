@@ -1,5 +1,5 @@
-require 'contract/abi_types/bytes'
-require 'encoders/bytes_encoder'
+require 'ethereum-contract-abi/contract/abi_types/bytes'
+require 'ethereum-contract-abi/encoders/bytes_encoder'
 
 include EthereumContractABI::Encoders
 include EthereumContractABI::ContractInterface::AbiTypes

@@ -1,6 +1,6 @@
-require 'contract/parsers/abi_type_parser'
-require 'contract/abi_types/uint'
-require 'contract/abi_types/bool'
+require 'ethereum-contract-abi/contract/parsers/abi_type_parser'
+require 'ethereum-contract-abi/contract/abi_types/uint'
+require 'ethereum-contract-abi/contract/abi_types/bool'
 
 include EthereumContractABI::ContractInterface::Parsers
 include EthereumContractABI::ContractInterface::AbiTypes

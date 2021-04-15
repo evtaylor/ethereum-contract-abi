@@ -1,9 +1,9 @@
 require 'json'
-require 'contract'
-require 'contract/input'
-require 'contract/output'
-require 'contract/parsers/abi_type_parser'
-require 'contract/function'
+require 'ethereum-contract-abi/contract'
+require 'ethereum-contract-abi/contract/input'
+require 'ethereum-contract-abi/contract/output'
+require 'ethereum-contract-abi/contract/parsers/abi_type_parser'
+require 'ethereum-contract-abi/contract/function'
 
 include EthereumContractABI::ContractInterface
 
