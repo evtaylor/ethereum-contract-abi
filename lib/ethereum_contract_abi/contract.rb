@@ -5,6 +5,14 @@ module EthereumContractABI
       @events = events
     end
 
+    def functions
+      @functions.values
+    end
+
+    def function(name)
+      @functions.dig(name)
+    end
+
     def function_exists?(name)
       @functions.key? name
     end
