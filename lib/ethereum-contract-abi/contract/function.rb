@@ -9,7 +9,7 @@ include EthereumContractABI::Decoders
 module EthereumContractABI
   module ContractInterface
     class Function
-      attr_reader :name
+      attr_reader :name, :inputs, :outputs
 
       def initialize(name, inputs, outputs)
         @name = name

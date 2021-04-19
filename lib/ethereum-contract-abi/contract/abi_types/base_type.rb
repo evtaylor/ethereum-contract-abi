@@ -25,6 +25,10 @@ module EthereumContractABI
         def self.from_string(string_type)
           raise NotImplementedError.new('from_string not implemented on type')
         end
+
+        def is_type_equal(type)
+          to_s == type.to_s
+        end
       end
     end
   end
