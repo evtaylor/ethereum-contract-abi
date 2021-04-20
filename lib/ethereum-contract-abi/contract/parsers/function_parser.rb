@@ -12,6 +12,7 @@ module EthereumContractABI
     module Parsers
       class FunctionParser
         def self.from_hash(function_hash)
+          function_hash = function_hash.transform_keys(&:to_sym)
           name = function_hash[:name]
           inputs = self.get_inputs(function_hash[:inputs])
           outputs = self.get_inputs(function_hash[:outputs])

@@ -4,6 +4,9 @@ require 'ethereum-contract-abi/contract/input'
 require 'ethereum-contract-abi/contract/output'
 require 'ethereum-contract-abi/contract/abi_types/uint'
 require 'ethereum-contract-abi/contract/abi_types/string'
+require 'ethereum-contract-abi/contract/eip/constants'
+require 'ethereum-contract-abi/contract/parsers/function_parser'
+require 'json'
 
 include EthereumContractABI::ContractInterface
 
@@ -49,8 +52,10 @@ describe EthereumContractABI::ContractInterface::Function do
       function_1 = instance_double(Function, {
         :name => 'coolFunction'
       })
+
+      comparison_function = Function.new('coolFunc', [], [])
       contract = EthereumContractABI::Contract.new([function_1], [])
-      expect(contract.has_function?('coolFunc', [], [])).to(eq(false))
+      expect(contract.has_function?(comparison_function)).to(eq(false))
     end
 
     it 'returns false when function exists with same name but has different number of inputs' do
@@ -62,8 +67,10 @@ describe EthereumContractABI::ContractInterface::Function do
         :inputs => [Input.new('input1', AbiTypes::Uint.new)],
         :outputs => outputs
       })
+      comparison_function = Function.new('coolFunction', inputs, outputs)
+
       contract = EthereumContractABI::Contract.new([function_1], [])
-      expect(contract.has_function?('coolFunction', inputs, outputs)).to(eq(false))
+      expect(contract.has_function?(comparison_function)).to(eq(false))
     end
 
     it 'returns false when function exists with same name but has different number of outputs' do
@@ -75,8 +82,10 @@ describe EthereumContractABI::ContractInterface::Function do
         :inputs => inputs,
         :outputs => [Output.new('input1', AbiTypes::String.new)]
       })
+      comparison_function = Function.new('coolFunction', inputs, outputs)
+
       contract = EthereumContractABI::Contract.new([function_1], [])
-      expect(contract.has_function?('coolFunction', inputs, outputs)).to(eq(false))
+      expect(contract.has_function?(comparison_function)).to(eq(false))
     end
 
     it 'returns true when function exists with same name, input types and output types' do
@@ -88,8 +97,10 @@ describe EthereumContractABI::ContractInterface::Function do
         :inputs => inputs,
         :outputs => outputs
       })
+      comparison_function = Function.new('coolFunction', inputs, outputs)
+
       contract = EthereumContractABI::Contract.new([function_1], [])
-      expect(contract.has_function?('coolFunction', inputs, outputs)).to(eq(true))
+      expect(contract.has_function?(comparison_function)).to(eq(true))
     end
 
     it 'returns false with slightly different input type' do
@@ -101,8 +112,19 @@ describe EthereumContractABI::ContractInterface::Function do
         :inputs => [Input.new('input1', AbiTypes::Uint.new(256))],
         :outputs => outputs
       })
+      comparison_function = Function.new('coolFunction', inputs, outputs)
+
       contract = EthereumContractABI::Contract.new([function_1], [])
-      expect(contract.has_function?('coolFunction', inputs, outputs)).to(eq(false))
+      expect(contract.has_function?(comparison_function)).to(eq(false))
+    end
+  end
+
+  describe "implements interface" do
+    it "should return true when contract implements erc721 metadata" do
+      erc721_json = File.read(FIXTURES + '/interfaces/erc721metadata.json')
+      functions = JSON.parse(erc721_json).map{ |fhash| Parsers::FunctionParser.from_hash(fhash)}
+      contract = EthereumContractABI::Contract.new(functions, [])
+      expect(contract.implements_interface(EIP::ERC721_METADATA)).to(eq(true))
     end
   end
 end
