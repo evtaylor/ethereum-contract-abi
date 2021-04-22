@@ -38,14 +38,15 @@ module EthereumContractABI
         encoded_args = @inputs.zip(args).map do |input, arg|
           input.encode_value(arg)
         end
-        method_id + encoded_args.join('')
+        EthereumContractABI::Util.fromHexByteString(method_id + encoded_args.join(''))
       end
 
       def decode_output(output_string)
+        output_hex_string = EthereumContractABI::Util.remove_hex_prefix(output_string)
         if has_any_dynamic_outputs
-          @decoder.decode_dynamic_output(output_string)
+          @decoder.decode_dynamic_output(output_hex_string)
         else
-          @decoder.decode_static_output(output_string)
+          @decoder.decode_static_output(output_hex_string)
         end
       end
 

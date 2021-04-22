@@ -15,7 +15,7 @@ module EthereumContractABI
           head = get_head_by_index(encoded_output, index)
           head_offset = IntDecoder.decode(head)
           output_bytes = hex.byteslice(head_offset, hex.bytesize)
-          output.type.decode_value(Util.fromHexByteString(output_bytes))
+          output.type.decode_value(Util.fromHexByteString(output_bytes, with_prefix: false))
         end
       end
 
