@@ -27,6 +27,14 @@ describe EthereumContractABI::Encoders::IntEncoder do
       expect(result.bytesize).to eq(32)
     end
 
+    it "encodes int ending in 255" do
+      expected = "000000000000000000000000000000000000000000000000000000000001608F"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      result = EthereumContractABI::Encoders::IntEncoder.encode(90255)
+      expect(result).to eq(expected_hex)
+      expect(result.bytesize).to eq(32)
+    end
+
     it "encodes negative integer" do
       expected = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
       expected_hex = EthereumContractABI::Util.toHexByteString(expected)
