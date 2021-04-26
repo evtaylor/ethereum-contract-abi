@@ -9,5 +9,12 @@ describe EthereumContractABI::ContractInterface::Parsers::ContractParser do
       contract = ContractParser.from_json(contract_json)
       expect(contract).to be_a_kind_of(EthereumContractABI::Contract)
     end
+
+    it 'should ignore functions that cant be parsed or parse with an error' do
+      # fixture has function inputs with types that arent supported yet
+      contract_json = File.read(FIXTURES + '/contracts/0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0.json')
+      contract = ContractParser.from_json(contract_json)
+      expect(contract).to be_a_kind_of(EthereumContractABI::Contract)
+    end
   end
 end
