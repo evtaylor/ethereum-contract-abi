@@ -11,8 +11,14 @@ module EthereumContractABI
         def self.from_json(json_string)
           parsed = JSON.parse(json_string)
           functions = parsed.select { |interface| interface["type"] === "function"}
-                            .map { |f_hash| f_hash.transform_keys(&:to_sym) }
-                            .map { |f_hash| FunctionParser.from_hash(f_hash) }
+            .map { |f_hash| f_hash.transform_keys(&:to_sym) }
+            .map do |f_hash|
+              begin
+                FunctionParser.from_hash(f_hash)
+              rescue ArgumentError
+                p "Error parsing contract function"
+              end
+            end
           events = parsed.select { |interface| interface["type"] === "event"}
           EthereumContractABI::Contract.new(functions, events)
         end
