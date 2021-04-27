@@ -1,5 +1,6 @@
 require 'ethereum-contract-abi/contract/eip/constants'
 require 'ethereum-contract-abi/contract/eip/erc721metadata'
+require 'ethereum-contract-abi/contract/eip/erc1155metadata'
 
 include EthereumContractABI::ContractInterface
 
