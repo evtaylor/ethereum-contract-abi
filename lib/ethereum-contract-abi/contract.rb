@@ -26,6 +26,8 @@ module EthereumContractABI
       case identifier
       when EIP::ERC721_METADATA
         EIP::ERC721Metadata.is_implemented_by?(self)
+      when EIP::ERC1155_METADATA
+        EIP::ERC1155Metadata.is_implemented_by?(self)
       else
         raise ArgumentError.new('Unknown interface identifier')
       end
