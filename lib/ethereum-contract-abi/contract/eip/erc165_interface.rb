@@ -20,7 +20,7 @@ module EthereumContractABI
 
         def self.supportsInterface
           function_name = 'supportsInterface'
-          inputs = [Output.new(AbiTypes::Bytes.new(4), 'interfaceID')]
+          inputs = [Input.new(AbiTypes::Bytes.new(4), 'interfaceID')]
           outputs = [Output.new(AbiTypes::Bool.new)]
           Function.new(function_name, inputs, outputs)
         end
