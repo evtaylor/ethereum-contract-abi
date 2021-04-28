@@ -32,7 +32,7 @@ module EthereumContractABI
 
         def self.tokenURI
           function_name = 'tokenURI'
-          inputs = [Input.new(AbiTypes::Uint.new, '_tokenId')]
+          inputs = [Input.new('_tokenId', AbiTypes::Uint.new)]
           outputs = [Output.new(AbiTypes::String.new)]
           Function.new(function_name, inputs, outputs)
         end
