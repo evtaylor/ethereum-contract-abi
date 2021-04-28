@@ -8,35 +8,37 @@ include EthereumContractABI::ContractInterface
 module EthereumContractABI
   module ContractInterface
     module EIP
-      class ERC721Metadata
+      class ERC721MetadataInterface
 
         def self.is_implemented_by?(contract)
-          self.implements_name(contract) &&
-            self.implements_symbol(contract) &&
-            self.implements_token_uri(contract)
+          contract.has_function?(self.name) &&
+            contract.has_function?(self.symbol) &&
+            contract.has_function?(self.tokenURI)
         end
 
-        private
-
-        def self.implements_name(contract)
+        def self.name
           function_name = 'name'
           inputs = []
           outputs = [Output.new(AbiTypes::String.new, '_name')]
-          contract.has_function?(Function.new(function_name, inputs, outputs))
+          Function.new(function_name, inputs, outputs)
         end
 
-        def self.implements_symbol(contract)
+        def self.symbol
           function_name = 'symbol'
           inputs = []
           outputs = [Output.new(AbiTypes::String.new, '_symbol')]
-          contract.has_function?(Function.new(function_name, inputs, outputs))
+          Function.new(function_name, inputs, outputs)
         end
 
-        def self.implements_token_uri(contract)
+        def self.tokenURI
           function_name = 'tokenURI'
           inputs = [Output.new(AbiTypes::Uint.new, '_tokenId')]
           outputs = [Output.new(AbiTypes::String.new)]
-          contract.has_function?(Function.new(function_name, inputs, outputs))
+          Function.new(function_name, inputs, outputs)
+        end
+
+        def functions
+          [self.name, self.symbol, self.tokenURI]
         end
       end
     end

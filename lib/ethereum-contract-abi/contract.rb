@@ -1,6 +1,6 @@
 require 'ethereum-contract-abi/contract/eip/constants'
-require 'ethereum-contract-abi/contract/eip/erc721metadata'
-require 'ethereum-contract-abi/contract/eip/erc1155metadata'
+require 'ethereum-contract-abi/contract/eip/erc721_metadata_interface'
+require 'ethereum-contract-abi/contract/eip/erc1155_metadata_interface'
 
 include EthereumContractABI::ContractInterface
 
@@ -25,10 +25,10 @@ module EthereumContractABI
 
     def implements_interface(identifier)
       case identifier
-      when EIP::ERC721_METADATA
-        EIP::ERC721Metadata.is_implemented_by?(self)
-      when EIP::ERC1155_METADATA
-        EIP::ERC1155Metadata.is_implemented_by?(self)
+      when EIP::ERC721_METADATA_ID
+        EIP::ERC721MetadataInterface.is_implemented_by?(self)
+      when EIP::ERC1155_METADATA_ID
+        EIP::ERC1155MetadataInterface.is_implemented_by?(self)
       else
         raise ArgumentError.new('Unknown interface identifier')
       end

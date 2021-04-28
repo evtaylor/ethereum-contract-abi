@@ -124,7 +124,7 @@ describe EthereumContractABI::ContractInterface::Function do
       erc721_json = File.read(FIXTURES + '/interfaces/erc721metadata.json')
       functions = JSON.parse(erc721_json).map{ |fhash| Parsers::FunctionParser.from_hash(fhash)}
       contract = EthereumContractABI::Contract.new(functions, [])
-      expect(contract.implements_interface(EIP::ERC721_METADATA)).to(eq(true))
+      expect(contract.implements_interface(EIP::ERC721_METADATA_ID)).to(eq(true))
     end
   end
 end

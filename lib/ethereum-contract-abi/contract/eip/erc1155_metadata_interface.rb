@@ -8,19 +8,21 @@ include EthereumContractABI::ContractInterface
 module EthereumContractABI
   module ContractInterface
     module EIP
-      class ERC1155Metadata
+      class ERC1155MetadataInterface
 
         def self.is_implemented_by?(contract)
-            self.implements_token_uri(contract)
+          contract.has_function?(self.uri)
         end
 
-        private
+        def function
+          [self.uri]
+        end
 
-        def self.implements_token_uri(contract)
+        def self.uri
           function_name = 'uri'
           inputs = [Output.new(AbiTypes::Uint.new, '_id')]
           outputs = [Output.new(AbiTypes::String.new)]
-          contract.has_function?(Function.new(function_name, inputs, outputs))
+          Function.new(function_name, inputs, outputs)
         end
       end
     end
