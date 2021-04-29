@@ -14,7 +14,7 @@ module EthereumContractABI
           contract.has_function?(self.supportsInterface)
         end
 
-        def functions
+        def self.functions
           [self.supportsInterface]
         end
 

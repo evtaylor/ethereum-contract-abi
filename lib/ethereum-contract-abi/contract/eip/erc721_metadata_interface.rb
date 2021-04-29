@@ -37,7 +37,7 @@ module EthereumContractABI
           Function.new(function_name, inputs, outputs)
         end
 
-        def functions
+        def self.functions
           [self.name, self.symbol, self.tokenURI]
         end
       end
