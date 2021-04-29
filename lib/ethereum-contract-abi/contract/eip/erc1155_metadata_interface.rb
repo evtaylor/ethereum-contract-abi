@@ -14,13 +14,13 @@ module EthereumContractABI
           contract.has_function?(self.uri)
         end
 
-        def function
+        def functions
           [self.uri]
         end
 
         def self.uri
           function_name = 'uri'
-          inputs = [Output.new(AbiTypes::Uint.new, '_id')]
+          inputs = [Input.new(AbiTypes::Uint.new, '_id')]
           outputs = [Output.new(AbiTypes::String.new)]
           Function.new(function_name, inputs, outputs)
         end
