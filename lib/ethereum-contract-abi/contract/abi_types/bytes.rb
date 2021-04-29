@@ -31,7 +31,7 @@ module EthereumContractABI
         end
 
         def encode_value(bytes)
-          raise ArgumentError unless valid_value?(bytes)
+          raise ArgumentError.new("Cannot encode invalid value") unless valid_value?(bytes)
           BytesEncoder.encode(bytes)
         end
 

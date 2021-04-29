@@ -35,5 +35,13 @@ describe EthereumContractABI::Encoders::BytesEncoder do
       result = EthereumContractABI::Encoders::BytesEncoder.encode(str)
       expect(result).to eq(expected_hex)
     end
+
+    it "encodes hex string bytes" do
+      expected = "0e89341c00000000000000000000000000000000000000000000000000000000"
+      expected_hex = EthereumContractABI::Util.toHexByteString(expected)
+      result = EthereumContractABI::Encoders::BytesEncoder.encode("0x0e89341c", 4)
+      expect(result).to eq(expected_hex)
+      expect(result.bytesize).to eq(32)
+    end
   end
 end
