@@ -146,5 +146,17 @@ describe EthereumContractABI::ContractInterface::Function do
       expected = [4, 5]
       expect(result).to(eq(expected))
     end
+
+    it "decodes the dynamic function output of a string url and strips extra bytes at the end" do
+      name = "symbol"
+      inputs = []
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      func = Function.new(name, inputs, outputs)
+
+      function_output = "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002d68747470733a2f2f61786965696e66696e6974792e636f6d2f6170692f61786965732f3632323137000000000000000000000000000000000000000000000000"
+      result = func.decode_output(function_output)
+      expected = ["https://axieinfinity.com/api/axies/62217"]
+      expect(result).to(eq(expected))
+    end
   end
 end
