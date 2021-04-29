@@ -7,32 +7,28 @@ module EthereumContractABI
   module ContractInterface
     module AbiTypes
       class Bytes < BaseType
-        def initialize(bytes = nil)
-          @bytes = bytes
+        def initialize(num_bytes = nil)
+          @num_bytes = num_bytes
         end
 
         def is_dynamic
-          @bytes.nil?
+          @num_bytes.nil?
         end
 
         def bytesize
-          @bytes.nil? ? nil : (@bytes.to_f/32.0).ceil
+          @num_bytes.nil? ? nil : (@num_bytes.to_f/32.0).ceil
         end
 
         def to_s
-          "bytes#{@bytes}"
+          "bytes#{@num_bytes}"
         end
 
         def valid_value?(value)
-          if @bytes.nil?
-            return true
-          end
-          value.bytesize <= @bytes
+          true
         end
 
         def encode_value(bytes)
-          raise ArgumentError.new("Cannot encode invalid value") unless valid_value?(bytes)
-          BytesEncoder.encode(bytes)
+          BytesEncoder.encode(bytes, @num_bytes)
         end
 
         def self.from_string(string_type)

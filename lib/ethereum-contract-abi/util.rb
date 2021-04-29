@@ -2,6 +2,9 @@ module EthereumContractABI
   class Util
 
     def self.toHexByteString(str)
+      if str.start_with?("0x")
+        return [str.slice(2, str.length)].pack("H*")
+      end
       [str].pack("H*")
     end
 
