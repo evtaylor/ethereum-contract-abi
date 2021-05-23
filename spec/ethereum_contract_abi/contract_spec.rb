@@ -127,4 +127,15 @@ describe EthereumContractABI::ContractInterface::Function do
       expect(contract.implements_interface(EIP::ERC721_METADATA_ID)).to(eq(true))
     end
   end
+
+  describe "define_method" do
+    it "should have dynamic methods for each function" do
+      inputs = [Input.new('input1', AbiTypes::Uint.new(128))]
+      outputs = [Output.new('input1', AbiTypes::String.new)]
+      function_1 = Function.new('coolFunction', inputs, outputs)
+
+      contract = EthereumContractABI::Contract.new([function_1], [])
+      expect(contract.coolFunction).to(eq(function_1))
+    end
+  end
 end

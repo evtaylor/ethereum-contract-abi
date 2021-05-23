@@ -9,6 +9,10 @@ module EthereumContractABI
     def initialize(functions, events)
       @functions = functions.to_h { |func| [func.name, func]}
       @events = events
+
+      functions.each do |f|
+        self.class.send(:define_method, f.name) { function(f.name) }
+      end
     end
 
     def functions
