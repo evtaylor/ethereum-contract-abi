@@ -31,6 +31,8 @@ module EthereumContractABI
       case identifier
       when EIP::ERC721_METADATA_ID
         EIP::ERC721MetadataInterface.is_implemented_by?(self)
+      when EIP::ERC721_ENUMERABLE_ID
+        EIP::ERC721EnumerableInterface.is_implemented_by?(self)
       when EIP::ERC1155_METADATA_ID
         EIP::ERC1155MetadataInterface.is_implemented_by?(self)
       else
