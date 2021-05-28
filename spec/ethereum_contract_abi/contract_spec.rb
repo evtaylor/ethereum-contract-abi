@@ -126,6 +126,13 @@ describe EthereumContractABI::ContractInterface::Function do
       contract = EthereumContractABI::Contract.new(functions, [])
       expect(contract.implements_interface(EIP::ERC721_METADATA_ID)).to(eq(true))
     end
+
+    it "should return true when contract implements erc721 enumerable" do
+      erc721_json = File.read(FIXTURES + '/interfaces/erc721enumerable.json')
+      functions = JSON.parse(erc721_json).map{ |fhash| Parsers::FunctionParser.from_hash(fhash)}
+      contract = EthereumContractABI::Contract.new(functions, [])
+      expect(contract.implements_interface(EIP::ERC721_ENUMERABLE_ID)).to(eq(true))
+    end
   end
 
   describe "define_method" do
