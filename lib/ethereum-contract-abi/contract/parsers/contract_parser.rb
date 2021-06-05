@@ -16,7 +16,7 @@ module EthereumContractABI
               begin
                 FunctionParser.from_hash(f_hash)
               rescue ArgumentError
-                p "Error parsing contract function"
+                # Error parsing contract function, all ABI types are not yet implemented
                 nil
               end
             end
