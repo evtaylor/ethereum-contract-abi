@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ethereum-contract-abi'
-  s.version     = '0.1.2'
+  s.version     = '0.1.3'
   s.summary     = "Ethereum contract ABI encoder and decoder"
   s.description = "A library for interacting with Ethereum smart contracts via the Contract Application Binary Interface (ABI)"
   s.authors     = ["Evan Taylor"]
@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{\A(?:test|spec|features)/}) }
   end
   s.require_paths = ["lib"]
+  s.add_runtime_dependency 'keccak256', '~> 2.0.1'
 end
