@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name        = 'ethereum-contract-abi'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.summary     = "Ethereum contract ABI encoder and decoder"
   s.description = "A library for interacting with Ethereum smart contracts via the Contract Application Binary Interface (ABI)"
   s.authors     = ["Evan Taylor"]
   s.email       = 'evan@evantaylor.ca'
-  s.homepage    = "https://evantaylor.ca"
+  s.homepage    = "https://github.com/evtaylor/ethereum-contract-abi"
   s.license     = 'MIT'
 
   s.files = Dir.chdir(File.expand_path(__dir__)) do
