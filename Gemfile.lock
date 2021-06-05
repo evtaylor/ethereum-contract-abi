@@ -1,14 +1,9 @@
-GIT
-  remote: https://github.com/evtaylor/sha3-pure-ruby.git
-  revision: c3e764863f4926db33308d42e0fe7ec8ce3b72ce
-  specs:
-    sha3-pure-ruby (1.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.4.4)
     json (2.5.1)
+    keccak256 (2.0.1)
     rake (13.0.3)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -29,9 +24,9 @@ PLATFORMS
 
 DEPENDENCIES
   json (~> 2.5)
+  keccak256
   rake
   rspec (~> 3.10)
-  sha3-pure-ruby!
 
 BUNDLED WITH
    2.2.3

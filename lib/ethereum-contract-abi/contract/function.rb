@@ -1,6 +1,6 @@
 require 'digest'
 require 'openssl'
-require 'sha3-pure-ruby'
+require 'keccak256'
 require 'ethereum-contract-abi/util'
 require 'ethereum-contract-abi/decoders/function_decoder'
 
@@ -24,7 +24,7 @@ module EthereumContractABI
       end
 
       def method_id
-        hash = [Digest::SHA3.new(256, true).hexdigest(signature)].pack("H*")
+        hash = [Digest::Keccak256.new.hexdigest(signature)].pack("H*")
         hash.slice(0..3)
       end
 
