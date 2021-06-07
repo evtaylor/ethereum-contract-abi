@@ -22,7 +22,7 @@ module EthereumContractABI
         end
 
         def valid_value?(value)
-          return false unless value.is_a? String
+          return false unless value.is_a? ::String
           true
         end
 
