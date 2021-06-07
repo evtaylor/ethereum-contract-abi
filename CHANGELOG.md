@@ -1,5 +1,8 @@
 # Change Log
 
+### v0.1.5
+- Added basic support for encoding function calls with dynamic input arguments (like strings)
+
 ### v0.1.4
 - Fixed ArgumentError thrown when validating a valid string in String ABI type
 

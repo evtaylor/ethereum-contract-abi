@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ethereum-contract-abi'
-  s.version     = '0.1.4'
+  s.version     = '0.1.5'
   s.summary     = "Ethereum contract ABI encoder and decoder"
   s.description = "A library for interacting with Ethereum smart contracts via the Contract Application Binary Interface (ABI)"
   s.authors     = ["Evan Taylor"]
