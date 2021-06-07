@@ -3,6 +3,7 @@ require 'openssl'
 require 'keccak256'
 require 'ethereum-contract-abi/util'
 require 'ethereum-contract-abi/decoders/function_decoder'
+require 'ethereum-contract-abi/encoders/function_encoder'
 
 include EthereumContractABI::Decoders
 
@@ -16,6 +17,7 @@ module EthereumContractABI
         @inputs = inputs
         @outputs = outputs
         @decoder = FunctionDecoder.new(outputs)
+        @encoder = FunctionEncoder.new(inputs)
       end
 
       def signature
@@ -35,10 +37,12 @@ module EthereumContractABI
 
       def encode_call(*args)
         raise ArgumentError.new("Invalid function arguments") unless valid_args?(args)
-        encoded_args = @inputs.zip(args).map do |input, arg|
-          input.encode_value(arg)
+        if has_any_dynamic_inputs
+          encoded_input = @encoder.encode_dynamic_input(args)
+        else
+          encoded_input = @encoder.encode_static_input(args)
         end
-        EthereumContractABI::Util.fromHexByteString(method_id + encoded_args.join(''))
+        EthereumContractABI::Util.fromHexByteString(method_id + encoded_input)
       end
 
       def decode_output(output_string)
@@ -54,6 +58,10 @@ module EthereumContractABI
 
       def has_any_dynamic_outputs
         @outputs.find { |o| o.type.is_dynamic }
+      end
+
+      def has_any_dynamic_inputs
+        @inputs.find { |o| o.type.is_dynamic }
       end
     end
   end

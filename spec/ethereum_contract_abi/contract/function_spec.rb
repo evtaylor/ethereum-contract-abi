@@ -93,6 +93,31 @@ describe EthereumContractABI::ContractInterface::Function do
       expected = "0x70a08231000000000000000000000000ae0ef4e561c31d5fbb62b8910b58ae316cd22438"
       expect(result).to(eq(expected))
     end
+
+    it 'encode function call with one string (dynamic) input' do
+      name = "available"
+      inputs = [Input.new('name', EthereumContractABI::ContractInterface::AbiTypes::String.new)]
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::Bool.new)]
+      func = Function.new(name, inputs, outputs)
+
+      result = func.encode_call("voice")
+      expected = "0xaeb8ce9b00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005766f696365000000000000000000000000000000000000000000000000000000"
+      expect(result).to(eq(expected))
+    end
+
+    it 'encode function call with two string (dynamic) inputs' do
+      name = "available"
+      inputs = [
+        Input.new('name1', EthereumContractABI::ContractInterface::AbiTypes::String.new),
+        Input.new('name2', EthereumContractABI::ContractInterface::AbiTypes::String.new),
+      ]
+      outputs = [Output.new(EthereumContractABI::ContractInterface::AbiTypes::Bool.new)]
+      func = Function.new(name, inputs, outputs)
+
+      result = func.encode_call("voice", "voice")
+      expected = "0x0c3f3cfb000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000005766f6963650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005766f696365000000000000000000000000000000000000000000000000000000"
+      expect(result).to(eq(expected))
+    end
   end
 
   describe "decode_output" do
